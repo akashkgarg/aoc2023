@@ -32,26 +32,22 @@ fn part2(filename: &str)  -> i32 {
     let mut sum: i32 = 0;
 
     for line in lines {
-        // store the index and digit as a pair
-        let mut ds: Vec<(usize, i32)> = Vec::new();
+        let mut ds: Vec<i32> = Vec::new();
         for (idx, c) in line.chars().enumerate() {
             match c.to_digit(10) {
-                Some(d) => ds.push((idx, d as i32)),
+                Some(d) => ds.push(d as i32),
                 // try reading the digit as a word
                 _ => {
                     for (d, word) in numbers.iter().enumerate() {
                         if line[idx..].starts_with(word) {
-                            ds.push((idx, d as i32));
+                            ds.push(d as i32);
                             break;
                         }
                     }
                 },
             }
         }
-        // sort our digits by index
-        ds.sort_by(|a, b| a.0.cmp(&b.0));
-
-        sum += ds.first().unwrap().1 * 10 + ds.last().unwrap().1;
+        sum += ds.first().unwrap() * 10 + ds.last().unwrap();
     }
 
     return sum;
