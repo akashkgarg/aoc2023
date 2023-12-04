@@ -40,7 +40,7 @@ fn get_full_number(map: &Vec<Vec<MapElement>>, r: isize, c: isize) -> (u32, Vec<
 
     while j >= 0 && j < map[r as usize].len() as isize {
         match map[r as usize][j as usize] {
-            MapElement::Digit(d) => { 
+            MapElement::Digit(_d) => { 
                 j -= 1; 
             }
             _ => break,
@@ -80,7 +80,7 @@ fn neighboring_numbers(map: &Vec<Vec<MapElement>>, r: isize, c: isize) -> Vec<u3
                 continue;
             }
             match map[i as usize][j as usize] {
-                MapElement::Digit(d) =>  {
+                MapElement::Digit(_d) =>  {
                     let (num, visited) = get_full_number(map, i, j);
                     numbers.push(num);
                     for (r, c) in visited {
