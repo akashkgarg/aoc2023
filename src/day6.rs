@@ -11,8 +11,8 @@ fn find_roots(time: usize, dist: usize) -> (usize, usize) {
     let determinant = b.powi(2) - 4.0 * a * c;
     if (determinant as i32) > 0 {
         let mut roots = (
-            Float::ceil(((-b + determinant.sqrt()) / (2.0 * a))) as usize,
-            Float::floor(((-b - determinant.sqrt()) / (2.0 * a))) as usize
+            Float::ceil((-b + determinant.sqrt()) / (2.0 * a)) as usize,
+            Float::floor((-b - determinant.sqrt()) / (2.0 * a)) as usize
         );
 
         // adjust in case we find exact roots.

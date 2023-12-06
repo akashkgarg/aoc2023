@@ -7,6 +7,8 @@ struct MapEntry {
     size: usize
 }
 
+// intervals are defined as a tuple by starting value and size
+
 // return true if val is inside interval a
 fn is_inside(a: (usize, usize), val: usize) -> bool {
     return val >= a.0 && val < a.0 + a.1;
@@ -70,6 +72,9 @@ fn src_to_dst(src: usize, map: &Vec<MapEntry>) -> usize {
     return src
 }
 
+// break up the given interval into many sub-intervals such that each resulting
+// interval is contained entirely within a MapEntry or completely outside of 
+// all MapEntries.
 fn split_interval_in_map(a: (usize, usize), map: &Vec<MapEntry>) -> Vec<(usize, usize)> {
     let mut splits: Vec<(usize, usize)> = Vec::new();
     for entry in map {
@@ -101,7 +106,7 @@ fn split_interval_in_map(a: (usize, usize), map: &Vec<MapEntry>) -> Vec<(usize, 
         }
     }
     // no overlapping intervals with entries in map, so we can just pass a along
-    if (splits.len() == 0) {
+    if splits.len() == 0 {
         splits.push(a);
     }
     return splits;
@@ -110,7 +115,7 @@ fn split_interval_in_map(a: (usize, usize), map: &Vec<MapEntry>) -> Vec<(usize, 
 fn ranged_src_to_dst(src: (usize, usize), map: &Vec<MapEntry>) -> (usize, usize) {
     let dst = src;
     for entry in map {
-        if (is_inside_interval(src, (entry.src_start, entry.size))) {
+        if is_inside_interval(src, (entry.src_start, entry.size)) {
             let offset = src.0 - entry.src_start;
             let dst = entry.dst_start + offset;
             return (dst, src.1);
@@ -159,7 +164,6 @@ fn part1(filename: &str) -> usize {
     }
     println!("{:?}", locations);
     return *locations.iter().min().unwrap();
-    return 0;
 }
 
 fn part2(filename: &str) -> usize {
