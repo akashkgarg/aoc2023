@@ -55,6 +55,7 @@ fn parse_input(filename: &str) -> (Vec<usize>, HashMap<usize, [usize; 2]>) {
     return (dirs, map);
 }
 
+#[allow(dead_code)]
 fn part2_bruteforce(filename: &str) -> usize { 
     let (dirs, map) = parse_input(filename);
 
@@ -106,7 +107,6 @@ fn steps_to_end((node, node_loc): (usize, usize),
 
 fn part2_withlcm(filename: &str) -> usize {
     let (dirs, map) = parse_input(filename);
-    let n_dirs = dirs.len();
 
     // the starting nodes.
     let start_nodes = map.iter().filter(|(k,_)| -> bool {
