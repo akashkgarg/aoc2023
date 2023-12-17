@@ -20,7 +20,6 @@ fn parse_map(filename: &str, expansion: usize) -> (Vec<Vec<(char, usize, usize)>
 
     // find empty columns and update their costs.
     for c in 0..map[0].len() { 
-        let mut empty = true;
         let col_cost = if map.iter().enumerate().all(|(r, _)| map[r][c].0 == '.') { expansion } else { 1 };
         for r in 0..map.len() {
             map[r][c].2 = col_cost;
