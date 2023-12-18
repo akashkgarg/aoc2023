@@ -1,5 +1,4 @@
 use crate::common::get_lines;
-use std::collections::HashSet;
 
 // do the dumb thing to move the rocks.
 fn tilt_north(map: &mut Vec<Vec<char>>) -> bool {

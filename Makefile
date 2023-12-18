@@ -47,7 +47,7 @@ day15:
 	cargo test day15 -- --show-output
 
 day16:
-	cargo test day16 --release -- --show-output
+	cargo test day16 -- --show-output --nocapture
 
 day17:
 	cargo test day17 -- --show-output
